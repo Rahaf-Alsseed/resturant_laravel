@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('food', function (Blueprint $table) {
             $table->id();
             $table->string("title");
-            $table->string("description");
+            $table->text("description");
             $table->float("price");
-            $table->enum("manue",["food","snack","sweet"]);
+           
             $table->timestamps();
         });
     }

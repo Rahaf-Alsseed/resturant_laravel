@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string("title");
             $table->string("phone");
             $table->string("location");
+            $table->enum("cusin_type",["food","snack","sweet"])->default("food");
+            $table->string("avrage_rate")->nullable();
             $table->timestamps();
         });
     }

@@ -15,12 +15,14 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->datetime("order_date");
+            // $table->datetime("order_date");
+            $table->enum("order_type",["delivary","pickup"]);
             $table->unsignedBigInteger("food_id");
             $table->unsignedBigInteger("user_id");
-            $table->foreign("food_id")->on("food")->references("id");
-            $table->foreign("user_id")->on("users")->references("id");
-            $table->unique(["order_date","food_id","user_id"]);
+            
+            $table->foreign("food_id")->on("food")->references("id")->onDelete('cascade');
+            $table->foreign("user_id")->on("users")->references("id")->onDelete('cascade');
+        
             $table->timestamps();
         });
     }

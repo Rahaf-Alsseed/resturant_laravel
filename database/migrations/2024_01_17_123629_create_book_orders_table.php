@@ -18,9 +18,11 @@ return new class extends Migration
             $table->datetime("date_book");
             $table->unsignedBigInteger("order_id");
             $table->unsignedBigInteger("user_id");
-            $table->foreign("order_id")->on("orders")->references("id");
-            $table->foreign("user_id")->on("users")->references("id");
-            $table->unique(["date_book","order_id","user_id"]);
+            $table->unsignedBigInteger("resturant_id");
+            $table->foreign("order_id")->on("orders")->references("id")->onDelete('cascade');
+            $table->foreign("user_id")->on("users")->references("id")->onDelete('cascade');
+            $table->foreign("resturant_id")->on("resturants")->references("id")->onDelete('cascade');
+            $table->unique(["date_book","order_id","user_id","resturant_id"]);
             $table->timestamps();
         });
     }

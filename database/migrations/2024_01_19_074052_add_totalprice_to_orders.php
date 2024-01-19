@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->float("totalprice")->after("user_id");
+            $table->float("totalprice")->nullable()->after("user_id");
         });
     }
 
@@ -25,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::table('ordars', function (Blueprint $table) {
+            //
+        });
     }
 };

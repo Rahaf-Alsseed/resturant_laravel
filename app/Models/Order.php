@@ -15,12 +15,14 @@ class Order extends Model
         "order_date",
         "food_id",
         "user_id",
+        'totalprice'
     ];
     protected $casts=
     [
         "order_date"=>"datetime",
         "food_id"=>"integer",
         "user_id"=>"integer",
+        "totalprice"=>"float"
     ];
     public function food():object
     {

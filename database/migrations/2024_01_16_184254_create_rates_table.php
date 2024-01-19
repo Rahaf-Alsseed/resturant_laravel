@@ -19,8 +19,8 @@ return new class extends Migration
             $table->unsignedBigInteger("resturant_id");
             $table->enum("rate",[0,1,2,3,4,5])->default(0);
             $table->string("comment")->nullable();
-            $table->foreign("user_id")->on("users")->references("id")->onDelete("cascade")->onUpdate("cascade");
-            $table->foreign("resturant_id")->on("resturants")->references("id")->onDelete("cascade")->onUpdate("cascade");
+            $table->foreign("user_id")->on("users")->references("id")->onDelete("cascade");
+            $table->foreign("resturant_id")->on("resturants")->references("id")->onDelete("cascade");
             $table->unique(["user_id","resturant_id"]);
             $table->timestamps();
         });
