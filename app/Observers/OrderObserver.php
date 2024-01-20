@@ -22,7 +22,8 @@ class OrderObserver
              {
             $total_price= $total_price + $order->totalprice;
              }
-             $orders->save();
+             $order->totalprice=$total_price;
+             $order->totalprice->save();
        }
        else
        {

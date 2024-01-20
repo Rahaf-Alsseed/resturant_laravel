@@ -35,8 +35,8 @@ class ResturantController extends Controller
         {
             return $this->requiredField($validate->errors());
         }
-        $result= Resturant::where("cusin_type",$request->cusin_type,"location")
-        ->where($request->location)->get();
+        $result= Resturant::where("cusin_type",$request->cusin_type)
+        ->where("location",$request->location)->get();
         if($result)
         {
             return $this->apiResponse(ResturantResource::collection($result));

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ResturantController;
 use App\Http\Controllers\FoodController;
+use App\Http\Controllers\OrderController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -25,5 +26,5 @@ Route::post('/logout/user', [UserController::class,'logout']);
 //____________________________________________________________________//
 Route::get('/resturant', [ResturantController::class, 'index']);
 Route::get('/food', [FoodController::class, 'index']);
-
-Route::get('/users/order/{id}', [UserController::class, 'userOrder']);
+Route::get('users/{id}', [UserController::class, 'index']);
+Route::get('/order/{user_id}', [OrderController::class, 'index']);

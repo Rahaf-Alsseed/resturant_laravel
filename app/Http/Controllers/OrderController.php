@@ -14,9 +14,11 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function orders(Request $request)
     {
-        //
+        $order= Order::where("user_id",$request->user_id)->get();
+
+
     }
 
     /**
