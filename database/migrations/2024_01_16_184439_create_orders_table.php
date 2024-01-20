@@ -19,7 +19,6 @@ return new class extends Migration
             $table->enum("order_type",["delivary","pickup"]);
             $table->unsignedBigInteger("food_id");
             $table->unsignedBigInteger("user_id");
-            
             $table->foreign("food_id")->on("food")->references("id")->onDelete('cascade');
             $table->foreign("user_id")->on("users")->references("id")->onDelete('cascade');
         

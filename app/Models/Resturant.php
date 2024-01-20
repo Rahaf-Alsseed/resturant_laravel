@@ -14,6 +14,7 @@ class Resturant extends Model
         "title",
         "phone",
         "location",
+        "cusin_type",
         "avrage_rate",
     ];
     protected $casts=

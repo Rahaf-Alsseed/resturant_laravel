@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Resturant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Traits\TestData;
+use App\Http\Resources\ResturantResource;
+use App\Http\Traits\GeneralTrait;
 class ResturantController extends Controller
-{
+{ use GeneralTrait;
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +16,8 @@ class ResturantController extends Controller
      */
     public function index()
     {
-        //
+        $resturant = Resturant::all();
+        return ResturantResource::collection($resturant);
     }
 
     /**
@@ -23,64 +25,25 @@ class ResturantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function search(Request $request)
     {
-        //
-    }
+        $validate= Validator::make($request->all(),[
+            "cusin_type"=>"required|string",
+            "location"=>"required|string",
+        ]);
+        if($validate->fails())
+        {
+            return $this->requiredField($validate->errors());
+        }
+        $result= Resturant::where("cusin_type",$request->cusin_type,"location")
+        ->where($request->location)->get();
+        if($result)
+        {
+            return $this->apiResponse(ResturantResource::collection($result));
+        }
+        else{
+            return $this->notFoundResponse("no resturant");
+        }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Resturant  $resturant
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Resturant $resturant)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Resturant  $resturant
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Resturant $resturant)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Resturant  $resturant
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Resturant $resturant)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Resturant  $resturant
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Resturant $resturant)
-    {
-        //
     }
 }

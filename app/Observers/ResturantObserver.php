@@ -22,15 +22,17 @@ class ResturantObserver
             $total_rate=0;
             $count= $rate->rate->count();
         foreach($rates as $rate)
-        {
+             {
             $total_rate= $rate->rate+$total_rate;
-        }
+             }
         $resturant->avrage_rate= $total_rate/$count;
-
-
-
+        $resturant->avrage_rate->save();
         
-    }
+        }
+        else 
+        {
+            return "no rating about this resturant";
+        }
     }
 
     /**

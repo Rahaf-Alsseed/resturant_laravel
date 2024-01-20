@@ -6,6 +6,7 @@ use App\Models\Food;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Traits\TestData;
+ use App\Http\Resources\FoodResource;
 
 class FoodController extends Controller
 {
@@ -16,7 +17,8 @@ class FoodController extends Controller
      */
     public function index()
     {
-        //
+        $food=Food::all();
+        return FoodResource::collection($food) ;  
     }
 
     /**

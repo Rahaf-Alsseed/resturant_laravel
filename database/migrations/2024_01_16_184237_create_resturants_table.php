@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('resturants', function (Blueprint $table) {
             $table->id();
             $table->string("title");
-            $table->string("phone");
+            $table->string("phone")->unique();
             $table->string("location");
             $table->enum("cusin_type",["food","snack","sweet"])->default("food");
             $table->string("avrage_rate")->nullable();

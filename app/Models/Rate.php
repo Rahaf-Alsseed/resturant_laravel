@@ -19,7 +19,7 @@ class Rate extends Model
     [
         "user_id"=>"integer",
         "resturant_id"=>"integer",
-        "comment"=>"string",
+        "comment"=>"text",
     ];
     public function user():object
     {
